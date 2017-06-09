@@ -3,8 +3,50 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.DataAccessLayer", "1.DataAccessLayer", "{81C5D538-5445-477F-9B7A-6813B7DDC56F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.BusinessLogicLayer", "2.BusinessLogicLayer", "{C1D011F0-E0DE-49A7-B298-C06245BAF4EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiService.DataAccess", "TaxiService.DataAccess\TaxiService.DataAccess.csproj", "{F1E94053-14DB-4F73-9E93-1687C84A3D92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiService.Modules", "TaxiService.Modules\TaxiService.Modules.csproj", "{F8EB91C8-716C-491D-B2F7-3404DC8E040D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.ServiceLayer", "3.ServiceLayer", "{38FDA1A1-2BDC-4B9C-8CCB-52EA0C57D38D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiService.Models", "TaxiService.Models\TaxiService.Models.csproj", "{6CA299BC-3241-4BFE-AE02-124037B53904}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaxiService.WebApp", "TaxiService.WebApp\TaxiService.WebApp.csproj", "{BB08A2AE-B6F4-472A-AED0-118B2E40C8D1}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1E94053-14DB-4F73-9E93-1687C84A3D92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1E94053-14DB-4F73-9E93-1687C84A3D92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1E94053-14DB-4F73-9E93-1687C84A3D92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1E94053-14DB-4F73-9E93-1687C84A3D92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8EB91C8-716C-491D-B2F7-3404DC8E040D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8EB91C8-716C-491D-B2F7-3404DC8E040D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8EB91C8-716C-491D-B2F7-3404DC8E040D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8EB91C8-716C-491D-B2F7-3404DC8E040D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CA299BC-3241-4BFE-AE02-124037B53904}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CA299BC-3241-4BFE-AE02-124037B53904}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CA299BC-3241-4BFE-AE02-124037B53904}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CA299BC-3241-4BFE-AE02-124037B53904}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB08A2AE-B6F4-472A-AED0-118B2E40C8D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB08A2AE-B6F4-472A-AED0-118B2E40C8D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB08A2AE-B6F4-472A-AED0-118B2E40C8D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB08A2AE-B6F4-472A-AED0-118B2E40C8D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F1E94053-14DB-4F73-9E93-1687C84A3D92} = {81C5D538-5445-477F-9B7A-6813B7DDC56F}
+		{F8EB91C8-716C-491D-B2F7-3404DC8E040D} = {C1D011F0-E0DE-49A7-B298-C06245BAF4EA}
+		{6CA299BC-3241-4BFE-AE02-124037B53904} = {38FDA1A1-2BDC-4B9C-8CCB-52EA0C57D38D}
+		{BB08A2AE-B6F4-472A-AED0-118B2E40C8D1} = {38FDA1A1-2BDC-4B9C-8CCB-52EA0C57D38D}
 	EndGlobalSection
 EndGlobal
