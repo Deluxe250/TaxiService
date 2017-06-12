@@ -74,7 +74,7 @@ namespace TaxiService.WebApp.Controllers
                 return HttpNotFound();
             }
             ViewBag.StatusId = new SelectList(db.OrderStatuses, "Id", "Name", order.StatusId);
-            ViewBag.DriverId = new SelectList(db.Users.Where(u => u.Roles.Any(r => r.RoleId == db.Roles.FirstOrDefault(ro => ro.Name == Roles.Driver.ToString()).Id)), "Id", "UserName", order.DriverId);
+            ViewBag.DriverId = new SelectList(db.Users.Where(u => u.Roles.Any(r => r.RoleId == db.Roles.FirstOrDefault(ro => ro.Name == Roles.Driver.ToString()).Id)), "Id", "FullName", order.DriverId);
             return View(order);
         }
 
@@ -89,7 +89,7 @@ namespace TaxiService.WebApp.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.StatusId = new SelectList(db.OrderStatuses, "Id", "Name", order.StatusId);
-            ViewBag.DriverId = new SelectList(db.Users.Where(u => u.Roles.Any(r => r.RoleId == db.Roles.FirstOrDefault(ro => ro.Name == Roles.Driver.ToString()).Id)), "Id", "UserName", order.DriverId);
+            ViewBag.DriverId = new SelectList(db.Users.Where(u => u.Roles.Any(r => r.RoleId == db.Roles.FirstOrDefault(ro => ro.Name == Roles.Driver.ToString()).Id)), "Id", "FullName", order.DriverId);
             return View(order);
         }
 
