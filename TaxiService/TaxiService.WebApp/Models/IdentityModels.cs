@@ -71,17 +71,23 @@ namespace TaxiService.WebApp.Models
             var admin = new ApplicationUser { UserName = "Александр Сергеевич Быстров", Email = "admin@t.ru" };
             var user = new ApplicationUser { UserName = "Владислав Андреевич Воронин", Email = "user@t.ru" };
             var dispatcher = new ApplicationUser { UserName = "Елена Владимировна Янковская", Email = "dispatcher@t.ru" };
-            var driver = new ApplicationUser { UserName = "Юрий Витальевич Комов", Email = "driver@t.ru" };
+            var driver1 = new ApplicationUser { UserName = "Юрий Витальевич Комов", Email = "driver1@t.ru" };
+            var driver2 = new ApplicationUser { UserName = "Игорь Николаевич Алёхин", Email = "driver2@t.ru" };
+            var driver3 = new ApplicationUser { UserName = "Иван Григорьевич Самсонов", Email = "driver3@t.ru" };
 
             ctx.Users.Add(admin);
             ctx.Users.Add(user);
             ctx.Users.Add(dispatcher);
-            ctx.Users.Add(driver);
+            ctx.Users.Add(driver1);
+            ctx.Users.Add(driver2);
+            ctx.Users.Add(driver3);
 
             userManager.AddToRole(admin.Id, Roles.Admin.ToString());
             userManager.AddToRole(user.Id, Roles.User.ToString());
             userManager.AddToRole(dispatcher.Id, Roles.Dispatcher.ToString());
-            userManager.AddToRole(driver.Id, Roles.Driver.ToString());
+            userManager.AddToRole(driver1.Id, Roles.Driver.ToString());
+            userManager.AddToRole(driver2.Id, Roles.Driver.ToString());
+            userManager.AddToRole(driver3.Id, Roles.Driver.ToString());
         }
 
         private void CreateOrderStatuses(ApplicationDbContext ctx)

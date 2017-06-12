@@ -19,7 +19,15 @@
     </div>
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jquery-ui")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    @*<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>*@
+
+    <script type="text/javascript">
+        $(function () {
+            $('.date-picker').datepicker();
+        })
+    </script>
 </body>
 </html>

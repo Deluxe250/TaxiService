@@ -14,14 +14,17 @@ namespace TaxiService.WebApp.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Orders
         public ActionResult Index()
         {
-            var orders = db.Orders.Include(o => o.Status).Include(o => o.Driver);
-            return View(orders.ToList());
+            var orders = db.Orders
+                .Include(o => o.Status)
+                .Include(o => o.Driver)
+                .OrderByDescending(o => o.Created)
+                .ToList();
+
+            return View(orders);
         }
 
-        // GET: Orders/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,7 +39,6 @@ namespace TaxiService.WebApp.Controllers
             return View(order);
         }
 
-        // GET: Orders/Create
         public ActionResult Create()
         {
             ViewBag.StatusId = new SelectList(db.OrderStatuses, "Id", "Name");
@@ -44,9 +46,6 @@ namespace TaxiService.WebApp.Controllers
             return View(order);
         }
 
-        // POST: Orders/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,DriverId,StatusId,StartPoint,EndPoint,StartTime,Created")] Order order)
@@ -63,7 +62,6 @@ namespace TaxiService.WebApp.Controllers
             return View(order);
         }
 
-        // GET: Orders/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,9 +78,6 @@ namespace TaxiService.WebApp.Controllers
             return View(order);
         }
 
-        // POST: Orders/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,DriverId,StatusId,StartPoint,EndPoint,StartTime,Created")] Order order)
@@ -98,7 +93,6 @@ namespace TaxiService.WebApp.Controllers
             return View(order);
         }
 
-        // GET: Orders/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +107,6 @@ namespace TaxiService.WebApp.Controllers
             return View(order);
         }
 
-        // POST: Orders/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
