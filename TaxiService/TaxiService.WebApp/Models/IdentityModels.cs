@@ -47,7 +47,7 @@ namespace TaxiService.WebApp.Models
         public DbSet<OrderStatus> OrderStatuses { get; set; }
     }
 
-    class CustomContextInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
+    class CustomContextInitializer : CreateDatabaseIfNotExists<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext ctx)
         {

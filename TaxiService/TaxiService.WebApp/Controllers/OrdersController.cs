@@ -42,6 +42,7 @@ namespace TaxiService.WebApp.Controllers
         public ActionResult Create()
         {
             ViewBag.StatusId = new SelectList(db.OrderStatuses, "Id", "Name");
+            ViewBag.DriverId = new SelectList(db.Users.Where(u => u.Roles.Any(r => r.RoleId == db.Roles.FirstOrDefault(ro => ro.Name == Roles.Driver.ToString()).Id)), "Id", "FullName");
             var order = new Order { StartTime = DateTime.Now };
             return View(order);
         }
@@ -62,6 +63,7 @@ namespace TaxiService.WebApp.Controllers
             return View(order);
         }
 
+        [Authorize(Roles = "Admin, Driver, Dispatcher")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,13 +75,20 @@ namespace TaxiService.WebApp.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.StatusId = new SelectList(db.OrderStatuses, "Id", "Name", order.StatusId);
+
+            var avaliableStatuses = db.OrderStatuses.AsQueryable();
+            if (User.IsInRole(Roles.Driver.ToString()))
+            {
+                avaliableStatuses = avaliableStatuses.Where(s => s.Mnemonic != OrderStatuses.New.ToString());
+            }
+            ViewBag.StatusId = new SelectList(avaliableStatuses, "Id", "Name", order.StatusId);
             ViewBag.DriverId = new SelectList(db.Users.Where(u => u.Roles.Any(r => r.RoleId == db.Roles.FirstOrDefault(ro => ro.Name == Roles.Driver.ToString()).Id)), "Id", "FullName", order.DriverId);
             return View(order);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin, Driver, Dispatcher")]
         public ActionResult Edit([Bind(Include = "Id,DriverId,StatusId,StartPoint,EndPoint,StartTime,Created")] Order order)
         {
             if (ModelState.IsValid)
@@ -88,11 +97,19 @@ namespace TaxiService.WebApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.StatusId = new SelectList(db.OrderStatuses, "Id", "Name", order.StatusId);
+
+            var avaliableStatuses = db.OrderStatuses.AsQueryable();
+            if (User.IsInRole(Roles.Driver.ToString()))
+            {
+                avaliableStatuses = avaliableStatuses.Where(s => s.Mnemonic != OrderStatuses.New.ToString());
+            }
+
+            ViewBag.StatusId = new SelectList(avaliableStatuses, "Id", "Name", order.StatusId);
             ViewBag.DriverId = new SelectList(db.Users.Where(u => u.Roles.Any(r => r.RoleId == db.Roles.FirstOrDefault(ro => ro.Name == Roles.Driver.ToString()).Id)), "Id", "FullName", order.DriverId);
             return View(order);
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -109,6 +126,7 @@ namespace TaxiService.WebApp.Controllers
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Order order = db.Orders.Find(id);

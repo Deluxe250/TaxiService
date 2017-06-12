@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
 @using Roles = TaxiService.WebApp.Models.Roles
+
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -8,29 +9,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @*@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            @Html.ActionLink("Заявки", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                @*@if (Request.IsAuthenticated)
+                @if (Request.IsAuthenticated && User.IsInRole(Roles.Admin.ToString()))
                 {
-                    if (User.IsInRole(Roles.Admin.ToString()))
-                    {
-                        <li>@Html.ActionLink("Администрирование", "Index", "Admin")</li>
-                    }
-                    if (User.IsInRole(Roles.Driver.ToString()))
-                    {
-                        <li>@Html.ActionLink("Заявки", "Index", "Driver")</li>
-                    }
-                    if (User.IsInRole(Roles.Dispatcher.ToString()))
-                    {
-                        <li>@Html.ActionLink("Заявки", "Index", "Dispatcher")</li>
-                    }
+                    <li>@Html.ActionLink("Управление пользователями", "Index", "Admin")</li>
                 }
-                else
-                {
-                    <li>@Html.ActionLink("Подача заявки", "Index", "User")</li>
-                }*@
             </ul>
             @Html.Partial("_LoginPartial")
         </div>

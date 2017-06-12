@@ -11,6 +11,10 @@ namespace TaxiService.WebApp.Controllers
     {
         public ActionResult Index()
         {
+            if (User.Identity.IsAuthenticated && User.IsInRole(Roles.Admin.ToString()))
+            {
+                return RedirectToAction("Index", "Admin");
+            }
             return RedirectToAction("Index", "Orders");
         }
     }

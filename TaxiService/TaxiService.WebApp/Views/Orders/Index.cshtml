@@ -50,20 +50,20 @@
                 @Html.DisplayFor(modelItem => item.Status.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Driver.UserName)
+                @Html.DisplayFor(modelItem => item.Driver.FullName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Created)
             </td>
             <td>
-                @if (Request.IsAuthenticated)
+                @if (Request.IsAuthenticated && !User.IsInRole(Roles.User.ToString()))
                 {
                     @Html.ActionLink("Изменить", "Edit", new { id = item.Id })
-
-                    if (User.IsInRole(Roles.Admin.ToString()))
+                    @*if (User.IsInRole(Roles.Admin.ToString()))
                     {
+                        <span> | </span>
                         @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
-                    }
+                    }*@
                 }
             </td>
         </tr>
