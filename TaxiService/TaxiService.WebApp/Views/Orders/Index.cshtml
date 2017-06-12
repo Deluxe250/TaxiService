@@ -1,0 +1,63 @@
+﻿@model IEnumerable<TaxiService.WebApp.Models.Order>
+
+@{
+    ViewBag.Title = "Заявки";
+}
+
+<h2>Заявки</h2>
+
+<p>
+    @Html.ActionLink("Создать", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Откуда
+        </th>
+        <th>
+            Куда
+        </th>
+        <th>
+            Когда
+        </th>
+        <th>
+            Водитель
+        </th>
+        <th>
+            Статус
+        </th>
+        <th>
+            Создано
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartPoint)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndPoint)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Driver.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Created)
+        </td>
+        <td>
+            @Html.ActionLink("Изменить", "Edit", new { id=item.Id }) |
+            @*@Html.ActionLink("Детали", "Details", new { id=item.Id }) |*@
+            @Html.ActionLink("Удалить", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

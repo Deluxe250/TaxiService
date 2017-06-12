@@ -11,27 +11,7 @@ namespace TaxiService.WebApp.Controllers
     {
         public ActionResult Index()
         {
-            if (HttpContext.User.Identity.IsAuthenticated)
-            {
-                if (HttpContext.User.IsInRole(Roles.User.ToString()))
-                {
-                    RedirectToAction("");
-                }
-                else if (HttpContext.User.IsInRole(Roles.Admin.ToString()))
-                {
-                    RedirectToAction("");
-                }
-                else if (HttpContext.User.IsInRole(Roles.Driver.ToString()))
-                {
-                    RedirectToAction("");
-                }
-                else if (HttpContext.User.IsInRole(Roles.Dispatcher.ToString()))
-                {
-                    RedirectToAction("");
-                }
-
-            }
-            return RedirectToAction("Account", "Login");
+            return RedirectToAction("Index", "Orders");
         }
     }
 }
